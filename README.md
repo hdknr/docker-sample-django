@@ -5,3 +5,6 @@
 - django
 - poetry
 - ssh
+
+
+![](docs/aws.svg)
