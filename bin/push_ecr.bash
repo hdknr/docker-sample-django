@@ -9,4 +9,4 @@ ECR=$AWS_ID.dkr.ecr.$REGION.amazonaws.com
 aws ecr get-login-password --profile $PROFILE --region $REGION  | docker login --username AWS --password-stdin $ECR
 docker build -t $REPO -f docker/deployment/Dockerfile .
 docker tag $REPO:latest $ECR/$REPO:latest
-# docker push $ECR/$REPO:latest
+docker push $ECR/$REPO:latest
