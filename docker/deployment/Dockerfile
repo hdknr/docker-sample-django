@@ -38,4 +38,7 @@ COPY ./pyproject.toml /usr/src/app/pyproject.toml
 
 RUN poetry install
 RUN mkdir -p /var/run/gunicorn
-ENTRYPOINT ["sh", "/usr/src/app/docker/deployment/entrypoint.sh"]
+RUN chmod +x /usr/src/app/docker/deployment/entrypoint.sh
+
+# ENTRYPOINT ["sh", "/usr/src/app/docker/deployment/entrypoint.sh"]
+CMD /usr/src/app/docker/deployment/entrypoint.sh hello-container-1
