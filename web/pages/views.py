@@ -1,14 +1,30 @@
-from django.shortcuts import render
 from django.utils import timezone as tz
 from django.http import HttpResponse
 import os
+import json
 from django.conf import settings
+from . import utils
 from logging import getLogger
+
 logger = getLogger()
+
 
 def index(request, path):
     now = tz.now()
-    db_params = os.environ.get('DATABASE_PARAMS', {})
-    text  = f'Super Cool Pages {now} : {path} :{db_params} : Ver={settings.APP_VER}'
+    name = "message.json"
+
+    if utils.fixture_exists(name):
+        fixture = json.load(utils.open_fixture(name))
+    else:
+        fixture = {}
+
+    params = {
+        "path": path,
+        "now": str(now),
+        "db": os.environ.get("DATABASE_PARAMS", {}),
+        "ver": settings.APP_VER,
+        **fixture,
+    }
+    text = json.dumps(params, ensure_ascii=False, indent=2)
     logger.info(text)
-    return HttpResponse(text)
+    return HttpResponse(text, content_type="application/json")

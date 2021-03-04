@@ -1,41 +1,61 @@
 [[package]]
-category = "main"
-description = "ASGI specs, helper code, and adapters"
 name = "asgiref"
+version = "3.3.1"
+description = "ASGI specs, helper code, and adapters"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "3.3.1"
 
 [package.extras]
 tests = ["pytest", "pytest-asyncio"]
 
 [[package]]
+name = "click"
+version = "7.1.2"
+description = "Composable command line interface toolkit"
 category = "main"
-description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
 name = "django"
+version = "3.1.6"
+description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
+category = "main"
 optional = false
 python-versions = ">=3.6"
-version = "3.1.6"
+
+[package.extras]
+argon2 = ["argon2-cffi (>=16.1.0)"]
+bcrypt = ["bcrypt"]
 
 [package.dependencies]
 asgiref = ">=3.2.10,<4"
 pytz = "*"
 sqlparse = ">=0.2.2"
 
-[package.extras]
-argon2 = ["argon2-cffi (>=16.1.0)"]
-bcrypt = ["bcrypt"]
-
 [[package]]
+name = "django-click"
+version = "2.2.0"
+description = "Build Django management commands using the click CLI package."
 category = "main"
-description = "WSGI HTTP Server for UNIX"
-name = "gunicorn"
 optional = false
-python-versions = ">=3.4"
-version = "20.0.4"
+python-versions = "*"
+
+[package.extras]
+dev = ["fabric", "sphinx", "check-manifest", "flake8", "livereload", "mccabe", "pep8", "pep8-naming", "pyflakes", "sphinx-autobuild", "sphinx-rtd-theme", "wheel"]
+test = ["coverage (<5)", "pytest", "pytest-cov", "pytest-django", "pytest-flake8"]
 
 [package.dependencies]
-setuptools = ">=3.0"
+click = ">=7.1,<7.2"
+
+[[package]]
+name = "gunicorn"
+version = "20.0.4"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
+optional = false
+python-versions = ">=3.4"
 
 [package.extras]
 eventlet = ["eventlet (>=0.9.7)"]
@@ -43,34 +63,45 @@ gevent = ["gevent (>=0.13)"]
 setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
 
+[package.dependencies]
+setuptools = ">=3.0"
+
 [[package]]
-category = "main"
-description = "World timezone definitions, modern and historical"
 name = "pytz"
+version = "2021.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
 optional = false
 python-versions = "*"
-version = "2021.1"
 
 [[package]]
-category = "main"
-description = "A non-validating SQL parser."
 name = "sqlparse"
+version = "0.4.1"
+description = "A non-validating SQL parser."
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "0.4.1"
 
 [metadata]
-content-hash = "04f268430a903d0179f5345151f8ed7d951da43ec6a8f229f9aa1c87b2cf1685"
 python-versions = "^3.8"
+content-hash = "9993a46630d075e33ccb7d98cefdba32b5147bf962852eb8efa7583a3f696c49"
 
 [metadata.files]
 asgiref = [
     {file = "asgiref-3.3.1-py3-none-any.whl", hash = "sha256:5ee950735509d04eb673bd7f7120f8fa1c9e2df495394992c73234d526907e17"},
     {file = "asgiref-3.3.1.tar.gz", hash = "sha256:7162a3cb30ab0609f1a4c95938fd73e8604f63bdba516a7f7d64b83ff09478f0"},
 ]
+click = [
+    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
+    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
 django = [
     {file = "Django-3.1.6-py3-none-any.whl", hash = "sha256:169e2e7b4839a7910b393eec127fd7cbae62e80fa55f89c6510426abf673fe5f"},
     {file = "Django-3.1.6.tar.gz", hash = "sha256:c6c0462b8b361f8691171af1fb87eceb4442da28477e12200c40420176206ba7"},
+]
+django-click = [
+    {file = "django-click-2.2.0.tar.gz", hash = "sha256:cd10bc23e2b49c7a934c3b20f1062ab5dbab78d72efbd316c5fd00fea51d902f"},
+    {file = "django_click-2.2.0-py2.py3-none-any.whl", hash = "sha256:159a3d411ef96c27278377b1bf5e60b5b4bcb884dbeb4b5e5efe2200ad051f5f"},
 ]
 gunicorn = [
     {file = "gunicorn-20.0.4-py2.py3-none-any.whl", hash = "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"},

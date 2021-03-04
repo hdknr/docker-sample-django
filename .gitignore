@@ -143,3 +143,9 @@ keys/*.pub
 
 ## Docker
 .devcontainer/
+
+## mac
+.DS_Store
+
+## app
+pages/fixtures/*.json
