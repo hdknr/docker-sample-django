@@ -21,8 +21,8 @@ def index(request, path):
     params = {
         "path": path,
         "now": str(now),
-        "db": os.environ.get("DATABASE_PARAMS", {}),
         "ver": settings.APP_VER,
+        **os.environ,
         **fixture,
     }
     text = json.dumps(params, ensure_ascii=False, indent=2)

@@ -4,43 +4,6 @@
 
 ### IAM Role: Fargate (Task Role)
 
-FagateSystemManagerPolicy:
-
-- Sysmtem Manager Parameter Store
-
-~~~json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "kms:Decrypt",
-                "kms:Encrypt",
-                "kms:GenerateDataKey",
-                "kms:Decrypt",
-                "ssm:GetParametersByPath",
-                "ssm:GetParameters",
-                "ssm:GetParameter",
-                "ssm:GetParameterHistory",
-                "ssm:DescribeParameters",
-                "ssm:GetParameters"
-            ],
-            "Resource": [
-                "arn:aws:kms:ap-northeast-1:{your-aws-id}:key/ef96ea29-c59c-404d-a0dd-a328037a51ac",
-                "arn:aws:ssm:*:{your-aws-id}:parameter/*"
-            ]
-        },
-        {
-            "Sid": "VisualEditor1",
-            "Effect": "Allow",
-            "Action": "secretsmanager:GetSecretValue",
-            "Resource": "*"
-        }
-    ]
-}
-~~~
 
 FargetFirehosePolicy:
 
@@ -57,11 +20,29 @@ FargetFirehosePolicy:
 }
 ~~~
 
+Trust Relationship: "Service" == `ecs-tasks.amazonaws.com`:
+
+~~~json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+~~~
+
 ### IAM Role: ecsTaskExecutionRole(Task Execution Role)
 
 ECS-SecretsManager-Permission:
 
-- Sysmtem Manager Parameter Store
+- Sysmtem Manager Parameter Store (String / SecureString)
 
 ~~~json
 {
@@ -77,8 +58,7 @@ ECS-SecretsManager-Permission:
             ],
             "Resource": [
                 "arn:aws:kms:ap-northeast-1:{your-aws-id}:key/10d2672b-8fdf-46f5-a561-7614433ab6d9",
-                "arn:aws:secretsmanager:ap-northeast-1:{your-aws-id}:secret:dev/DockerHubSecret-5Z0abn",
-                "arn:aws:secretsmanager:ap-northeast-1:{your-aws-id}:secret:djdocker-database-params",
+                "arn:aws:secretsmanager:*:{your-aws-id}:secret:*",
                 "arn:aws:ssm:*:{your-aws-id}:parameter/*"
             ]
         }
@@ -135,17 +115,4 @@ Storage Log:
 - `delivery_stream`: `djdocker-s3`
 - region: `ap-northeast-1`
 - Name: `firehose`
-
-#### ECS Task: Container `djdocker`
-
-- Name: `djdocker`
-- Image: `906394416424.dkr.ecr.ap-northeast-1.amazonaws.com/aws-for-fluent-bit:latest`
-- Memory: Soft 128Mb
-
-Storage Log:
-
-- Loging: `awslogs`
-- awslogs-group: `/etc/djdoker`
-- awslogs-region: `ap-northeast-1`
-- awslogs-stream-prefix: `ecs`
 
