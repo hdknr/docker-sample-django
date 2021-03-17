@@ -1,5 +1,5 @@
 FROM python:3.8.3
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/web
 
 ## COPY
 COPY . /usr/src/app
@@ -17,7 +17,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 RUN mkdir ~/.ssh
 RUN echo $SSH_PUBLIC_KEY > ~/.ssh/authorized_keys
-RUN cat ./keys/*.pub >> ~/.ssh/authorized_keys
+#RUN cat ./keys/*.pub >> ~/.ssh/authorized_keys
 RUN chmod 0600 ~/.ssh/authorized_keys
 
 EXPOSE 22
