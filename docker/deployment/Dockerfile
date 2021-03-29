@@ -1,8 +1,13 @@
 FROM python:3.8.3
 WORKDIR /usr/src/app/web
 
+ENV APP_HOME=/usr/src/web
 ## COPY
 COPY . /usr/src/app
+
+RUN mkdir -p $APP_HOME && \
+    mkdir $APP_HOME/static && \
+    mkdir $APP_HOME/media
 
 ## SSH
 RUN apt-get update && apt-get install -y openssh-server
@@ -30,6 +35,8 @@ EXPOSE 80
 ## Python Django
 ENV POETRY_VERSION=1.0.10 \
     PATH="/root/.poetry/bin:$PATH"
+
+RUN pip install mysqlclient
 
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/${POETRY_VERSION}/get-poetry.py | python && \
     poetry config virtualenvs.create false

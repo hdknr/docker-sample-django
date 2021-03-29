@@ -1,0 +1,40 @@
+{% extends 'memo/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'memo/css/memo_create.css' %}">
+{% endblock %}
+
+{% block title %}作成{% endblock %}
+
+{% block content %}
+    <!-- ジャンボトロン -->
+    <div class="container">
+        <div class="bg-light p-3 p-sm-5 my-4 rounded">
+            <h1 class="display-4">メモ作成画面</h1>
+            <hr class="my-4">
+            <h4 class="page-description">メモを作成しましょう。</h4>
+            <!-- 一覧に戻る -->
+            <p class="btn-content btns-btn">
+                <a href="{% url 'memo:memo' %}" class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
+                    一覧に戻る
+                    <i class="far fa-list-alt"></i>
+                </a>
+            </p>
+        </div>
+    </div>
+    <!-- 新規メモ作成フォーム -->
+    <div class="container">
+        <form action="{% url 'memo:create' %}" method="POST">
+            {% csrf_token %}
+            <p>{{ form.question }}</p>
+            <p>{{ form.text }}</p>
+            <p>{{ form.tag }}</p>
+<!--            <h5 class="images">画像(任意) <i class="far fa-images"></i></h5>-->
+<!--            <div class="image-upload images">-->
+<!--                <p>{{ form.image }}</p>-->
+<!--            </div>-->
+        <input type="submit" class="flat border2" value="作成!!!">
+    </form>
+    </div>
+{% endblock content %}

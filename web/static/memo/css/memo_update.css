@@ -1,0 +1,156 @@
+.cp_iptxt {
+	position: relative;
+	width: 80%;
+	margin: 40px 0px;
+}
+
+.cp_iptxt input[type='text'] {
+	font: 15px/24px sans-serif;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.cp_iptxt input[type='text']:focus {
+	outline: none;
+}
+#id_question, #id_tag, #id_update_time {
+	padding: 7px 14px;
+	transition: 0.4s;
+	border: 1px solid #1b8d8d;
+	background: transparent;
+}
+#id_question ~ .focus_line:before,
+#id_question ~ .focus_line:after,
+#id_tag ~ .focus_line:before,
+#id_tag ~ .focus_line:after,
+#id_update_time ~ .focus_line:before,
+#id_update_time ~ .focus_line:after {
+	position: absolute;
+	top: -1px;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	content: '';
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+#id_question ~ .focus_line:after,
+#id_tag ~ .focus_line:after,
+#id_update_time ~ .focus_line:after {
+	top: auto;
+	bottom: 0;
+}
+#id_question ~ .focus_line i:before,
+#id_question ~ .focus_line i:after,
+#id_tag ~ .focus_line i:before,
+#id_tag ~ .focus_line i:after,
+#id_update_time ~ .focus_line i:before,
+#id_update_time ~ .focus_line i:after {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 2px;
+	height: 0;
+	content: '';
+	transition: 0.6s;
+	background-color: #da3c41;
+}
+#id_question ~ .focus_line i:after,
+#id_tag ~ .focus_line i:after,
+#id_update_time ~ .focus_line i:after {
+	right: 0;
+	left: auto;
+}
+#id_question:focus ~ .focus_line:before,
+#id_question:focus ~ .focus_line:after,
+#id_tag:focus ~ .focus_line:before,
+#id_tag:focus ~ .focus_line:after,
+#id_update_time:focus ~ .focus_line:before,
+#id_update_time:focus ~ .focus_line:after,
+.cp_iptxt.ef ~ .focus_line:before,
+.cp_iptxt.ef ~ .focus_line:after {
+	left: 0;
+	width: 100%;
+	transition: 0.4s;
+}
+#id_question:focus ~ .focus_line i:before,
+#id_question:focus ~ .focus_line i:after,
+#id_tag:focus ~ .focus_line i:before,
+#id_tag:focus ~ .focus_line i:after,
+#id_update_time:focus ~ .focus_line i:before,
+#id_update_time:focus ~ .focus_line i:after,
+.cp_iptxt.ef ~ .focus_line i:before,
+.cp_iptxt.ef ~ .focus_line i:after {
+	top: -1px;
+	height: 100%;
+	transition: 0.6s;
+}
+#id_question ~ label,
+#id_tag ~ label,
+#id_text ~ label,
+#id_update_time ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+	left: 14px;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #aaaaaa;
+    opacity: 0;
+}
+#id_question:focus ~ label,
+#id_tag:focus ~ label,
+#id_text:focus ~ label,
+#id_update_time:focus ~ label,
+.cp_iptxt.ef ~ label {
+	font-size: 12px;
+	top: -18px;
+	left: 0;
+	transition: 0.3s;
+	color: #da3c41;
+    opacity: 1;
+}
+
+label{
+    opacity: 0;
+    width: 100%;
+}
+
+textarea:focus {
+  border-color: #da3c41;
+  background-color: rgba(218, 60, 65, 0.3);
+  outline: none;
+
+}
+
+textarea{
+    border: 2px solid #1b8d8d;
+}
+
+input[type="text"],  textarea {
+	width:100%;
+}
+
+input[type='submit']{
+  border: none;
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #77c7e2;
+  color: #303f42;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.btns-btn{
+    margin-top: 3rem;
+}
+
+.border2{
+    margin-bottom: 3rem;
+}
