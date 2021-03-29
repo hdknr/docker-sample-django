@@ -8,6 +8,11 @@ services:
     volumes:
       - .:/usr/src/app/
       - gunicorn:/run/gunicorn
+      - mysql_sock:/run/mysqld/
+    expose:
+      - 8000
+    depends_on:
+      - mysql
 
   nginx:
     image: nginx:1.17.7
@@ -19,6 +24,26 @@ services:
     depends_on:
       - django
 
+  # MySQL
+  mysql:
+    image: mysql@sha256:d5ba356f580dce71bebfc9fb0cd29b446cfb3aedff699fa9a1e34c2ffc88dd13
+    ports:
+      - '${FORWARD_DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./.env
+    volumes:
+      - mysql_sock:/run/mysqld/
+
+
 volumes:
   gunicorn:
+    driver: local
+  mysql_sock:
     driver: local

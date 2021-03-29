@@ -1,0 +1,35 @@
+input[type='submit']{
+  border: none;
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #77c7e2;
+  color: #303f42;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.btn-content{
+  margin-top: 1rem;
+}
+
+.image-upload{
+  margin-top: 1rem;
+
+}
+
+.image-description{
+  font-size: 18px;
+}
+
+.btns-btn{
+    margin-top: 3rem;
+}
+
+.flat{
+  margin-bottom: 3rem;
+}

@@ -22,6 +22,6 @@ sys.path.append(DIR)
 
 # Gunicorn Configuration
 timeout = 180
-bind = "unix:/var/run/gunicorn/gunicorn.sock"
+bind = "unix:/var/run/gunicorn/,"
 #bind = "unix:" + os.path.join(LOGS, "gunicorn.sock")
 #bind = "0.0.0.0:80"   # USE TCP
