@@ -6,9 +6,15 @@ services:
       dockerfile: ./docker/deployment/Dockerfile
     command: gunicorn app.wsgi --bind=unix:/var/run/gunicorn/gunicorn.sock
     volumes:
-      - .:/usr/src/app/
-      - gunicorn:/run/gunicorn
-      - mysql_sock:/run/mysqld/
+      - type: bind
+        source: .
+        target: /usr/src/app/
+      - type: bind
+        source: /usr/src/run
+        target: /run
+      - type: bind
+        source: ./static
+        target: /usr/src/app/static
     expose:
       - 8000
     depends_on:
@@ -19,14 +25,18 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./docker/deployment/nginx/conf.d:/etc/nginx/conf.d
-      - gunicorn:/run/gunicorn
+      - type: bind
+        source: /usr/src/run
+        target: /run
+      - type: bind
+        source: ./static
+        target: /usr/src/app/static
     depends_on:
       - django
 
   # MySQL
   mysql:
-    image: mysql@sha256:d5ba356f580dce71bebfc9fb0cd29b446cfb3aedff699fa9a1e34c2ffc88dd13
+    image: mysql
     ports:
       - '${FORWARD_DB_PORT:-3306}:3306'
     environment:
@@ -38,12 +48,3 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     env_file:
       - ./.env
-    volumes:
-      - mysql_sock:/run/mysqld/
-
-
-volumes:
-  gunicorn:
-    driver: local
-  mysql_sock:
-    driver: local
