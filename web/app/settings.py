@@ -82,15 +82,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE':  'django.db.backends.mysql',
-        'NAME': env("DB_DATABASE"),
-        'USER': env("DB_USERNAME"),
-        'PASSWORD': env("DB_PASSWORD"),
-        # 'HOST': os.environ.get("DB_HOST"),
-        'HOST': 'localhost',
-        'POST': env("FORWARD_DB_PORT"),
-    }
+    "default": env.db_url("DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3"),
 }
 
 # Password validation
